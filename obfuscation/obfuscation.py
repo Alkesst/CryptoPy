@@ -1,3 +1,4 @@
+import base64
 alpha_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 alpha_lower = "abcdefghijklmnopqrstuvwxyz"
 
@@ -20,8 +21,8 @@ def rot13(to_cipher: str) -> str:
     return caesar_cipher(to_cipher, 13)
 
 
-def base64():
-    pass
+def base64cipher(to_cipher: bytes) -> bytes:
+    return base64.b64encode(to_cipher)
 
 
 def main():
@@ -37,6 +38,7 @@ def main():
         caesar = caesar_cipher(to_cipher)
     print('Obfuscated version of the message using caesar cipher: ' + caesar)
     print('Obfuscated version of the message using ROT13: ' + rot13(to_cipher))
+    print('Obfuscated version of the message using base64: ' + base64cipher(bytes(to_cipher, 'utf')).decode('utf-8'))
 
 
 if __name__ == "__main__":
