@@ -1,6 +1,7 @@
 import base64
 alpha_upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 alpha_lower = "abcdefghijklmnopqrstuvwxyz"
+base64_challenge = "VWtkc2EwbEliSFprVTBJeFI6SIZaMWxUUW5OaU1qbDNVSGM5UFFvPQo="
 
 
 def caesar_cipher(to_cipher: str, offset: int = 3) -> str:
@@ -25,6 +26,17 @@ def base64cipher(to_cipher: bytes) -> bytes:
     return base64.b64encode(to_cipher)
 
 
+def caesar_crack(ciphered_text: str):
+    """
+    This method cracks the caesar cipher using brute force.
+    Caesar cipher is easy to crack, because there are only 26 possible offsets
+    :param ciphered_text: Ciphered text to crack
+    :return: None
+    """
+    for i in range(26):
+        print('{} {}'.format(i, caesar_cipher(ciphered_text, i)))
+
+
 def main():
     to_cipher = input('Enter a message to cipher: ')
     offset = input('Enter an offset (leave blank to use default): ')
@@ -39,6 +51,8 @@ def main():
     print('Obfuscated version of the message using caesar cipher: ' + caesar)
     print('Obfuscated version of the message using ROT13: ' + rot13(to_cipher))
     print('Obfuscated version of the message using base64: ' + base64cipher(bytes(to_cipher, 'utf')).decode('utf-8'))
+    print('Cracking caesar cipher...')
+    caesar_crack(caesar)
 
 
 if __name__ == "__main__":
